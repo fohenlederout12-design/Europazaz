@@ -1,221 +1,695 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Team Hub</title>
+<title>EUROPA</title>
 
-    <link rel="stylesheet" href="style.css">
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#05070d;
+    color:white;
+    min-height:100vh;
+}
+
+/* NAVIGATION */
+
+header{
+    width:100%;
+    padding:20px;
+    text-align:center;
+    border-bottom:1px solid #202532;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:900;
+    letter-spacing:3px;
+}
+
+.logo span{
+    color:#00aaff;
+}
+
+
+/* CONTENU */
+
+.page{
+    min-height:calc(100vh - 80px);
+    padding:40px 20px;
+    max-width:1100px;
+    margin:auto;
+}
+
+.hidden{
+    display:none;
+}
+
+
+/* ACCUEIL */
+
+.home{
+    text-align:center;
+    padding-top:60px;
+}
+
+.home h1{
+    font-size:70px;
+    margin-bottom:15px;
+}
+
+.home h1 span{
+    color:#00aaff;
+}
+
+.home p{
+    color:#888;
+    font-size:18px;
+    margin-bottom:40px;
+}
+
+
+/* BOUTONS */
+
+.buttons{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+    max-width:800px;
+    margin:auto;
+}
+
+button{
+    border:none;
+    cursor:pointer;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.main-button{
+    padding:25px;
+    border-radius:15px;
+    background:#0d111a;
+    color:white;
+    border:1px solid #252c39;
+    transition:0.3s;
+}
+
+.main-button:hover{
+    transform:translateY(-5px);
+    border-color:#00aaff;
+    box-shadow:0 0 25px rgba(0,170,255,.2);
+}
+
+
+/* PAGES */
+
+.page h2{
+    font-size:38px;
+    margin-bottom:30px;
+}
+
+.back{
+    background:#151a24;
+    color:white;
+    padding:12px 20px;
+    border-radius:10px;
+    margin-bottom:30px;
+}
+
+.back:hover{
+    background:#00aaff;
+    color:#05070d;
+}
+
+
+/* CARTES */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#0d111a;
+    border:1px solid #202735;
+    border-radius:16px;
+    padding:25px;
+}
+
+.card h3{
+    margin-bottom:12px;
+    color:#00aaff;
+}
+
+.card p{
+    color:#999;
+    line-height:1.5;
+}
+
+
+/* EMPLOI DU TEMPS */
+
+.schedule{
+    display:grid;
+    gap:12px;
+}
+
+.day{
+    background:#0d111a;
+    border:1px solid #202735;
+    border-radius:12px;
+    padding:20px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.day span{
+    color:#aaa;
+}
+
+
+/* VIDEOS */
+
+.video{
+    background:#0d111a;
+    border:1px solid #202735;
+    padding:20px;
+    margin-bottom:10px;
+    border-radius:12px;
+
+    display:flex;
+    justify-content:space-between;
+}
+
+.video span{
+    color:#aaa;
+}
+
+
+/* PRIVÉ */
+
+.private-title{
+    color:#00aaff;
+}
+
+.private-menu{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+
+/* CODE */
+
+#codeBox{
+    max-width:400px;
+    margin:60px auto;
+    text-align:center;
+}
+
+#codeBox input{
+    width:100%;
+    padding:15px;
+    margin:20px 0;
+
+    border-radius:10px;
+    border:1px solid #303847;
+
+    background:#0d111a;
+    color:white;
+
+    text-align:center;
+    font-size:20px;
+}
+
+.enter{
+    background:#00aaff;
+    color:#05070d;
+
+    padding:14px 30px;
+    border-radius:10px;
+}
+
+#error{
+    color:#ff4d4d;
+    margin-top:15px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .home h1{
+        font-size:50px;
+    }
+
+    .day,
+    .video{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
+    }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
-    <header class="navbar">
+<header>
 
-        <div class="logo">
-            TEAM<span>HUB</span>
+    <div class="logo">
+        EU<span>ROPA</span>
+    </div>
+
+</header>
+
+
+<!-- ================= ACCUEIL ================= -->
+
+<section id="home" class="page home">
+
+    <h1>
+        EU<span>ROPA</span>
+    </h1>
+
+    <p>
+        Bienvenue dans l'espace de la team.
+    </p>
+
+    <div class="buttons">
+
+        <button class="main-button" onclick="showPage('planning')">
+            📅 Emploi du temps
+        </button>
+
+        <button class="main-button" onclick="showPage('events')">
+            🎉 Événements
+        </button>
+
+        <button class="main-button" onclick="showPage('videos')">
+            🎥 Vidéos
+        </button>
+
+        <button class="main-button" onclick="showPage('shooting')">
+            🎬 Tournages
+        </button>
+
+        <button class="main-button" onclick="showPage('privateCode')">
+            🔒 Privé
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= EMPLOI DU TEMPS ================= -->
+
+<section id="planning" class="page hidden">
+
+    <button class="back" onclick="goHome()">
+        ← Retour
+    </button>
+
+    <h2>📅 Emploi du temps</h2>
+
+    <div class="schedule">
+
+        <div class="day">
+            <strong>Lundi</strong>
+            <span>🏋️ Entraînement</span>
         </div>
 
-        <nav>
-            <a href="#planning">Emploi du temps</a>
-            <a href="#events">Événements</a>
-            <a href="#videos">Vidéos</a>
-            <a href="#shooting">Tournages</a>
+        <div class="day">
+            <strong>Mardi</strong>
+            <span>🎉 Soirée entre nous</span>
+        </div>
 
-            <a href="prive.html" class="private-button">
-                🔒 Privé
-            </a>
-        </nav>
+        <div class="day">
+            <strong>Mercredi</strong>
+            <span>🏆 Tournoi</span>
+        </div>
 
-    </header>
+        <div class="day">
+            <strong>Jeudi</strong>
+            <span>🏋️ Entraînement</span>
+        </div>
 
+        <div class="day">
+            <strong>Vendredi</strong>
+            <span>😎 Chill</span>
+        </div>
 
-    <main>
+        <div class="day">
+            <strong>Samedi</strong>
+            <span>🏆 Cup de la team</span>
+        </div>
 
-        <section class="hero">
+        <div class="day">
+            <strong>Dimanche</strong>
+            <span>🌴 Repos</span>
+        </div>
 
-            <div class="hero-content">
+    </div>
 
-                <p class="small-title">BIENVENUE SUR</p>
-
-                <h1>
-                    TEAM<span>HUB</span>
-                </h1>
-
-                <p class="description">
-                    L'espace de notre team pour organiser
-                    les entraînements, événements, vidéos
-                    et tournages.
-                </p>
-
-                <div class="buttons">
-
-                    <a href="#planning" class="main-button">
-                        Voir le planning
-                    </a>
-
-                    <a href="prive.html" class="private-button big">
-                        🔒 Espace privé
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
+</section>
 
 
-        <section class="categories">
+<!-- ================= EVENEMENTS ================= -->
 
-            <h2>Notre espace</h2>
+<section id="events" class="page hidden">
 
-            <div class="cards">
+    <button class="back" onclick="goHome()">
+        ← Retour
+    </button>
 
-                <a href="#planning" class="card">
-                    <div class="icon">📅</div>
-                    <h3>Emploi du temps</h3>
-                    <p>
-                        Retrouvez toutes les activités
-                        de la semaine.
-                    </p>
-                </a>
+    <h2>🎉 Événements</h2>
 
+    <div class="card">
+        <h3>Aucun événement</h3>
+        <p>
+            Aucun événement n'est prévu pour le moment.
+        </p>
+    </div>
 
-                <a href="#events" class="card">
-                    <div class="icon">🎉</div>
-                    <h3>Événements</h3>
-                    <p>
-                        Aucun événement prévu pour le moment.
-                    </p>
-                </a>
+</section>
 
 
-                <a href="#videos" class="card">
-                    <div class="icon">🎥</div>
-                    <h3>Vidéos</h3>
-                    <p>
-                        Retrouvez le planning des vidéos.
-                    </p>
-                </a>
+<!-- ================= VIDEOS ================= -->
+
+<section id="videos" class="page hidden">
+
+    <button class="back" onclick="goHome()">
+        ← Retour
+    </button>
+
+    <h2>🎥 Vidéos</h2>
+
+    <div class="video">
+        <strong>Lundi</strong>
+        <span>👥 Présentation de la team</span>
+    </div>
+
+    <div class="video">
+        <strong>Mardi</strong>
+        <span>🎤 Interview</span>
+    </div>
+
+    <div class="video">
+        <strong>Mercredi</strong>
+        <span>🎤 Interview</span>
+    </div>
+
+    <div class="video">
+        <strong>Jeudi</strong>
+        <span>🎮 Solo Build</span>
+    </div>
+
+    <div class="video">
+        <strong>Vendredi</strong>
+        <span>🎤 Interview</span>
+    </div>
+
+    <div class="video">
+        <strong>Samedi</strong>
+        <span>🎤 Interview</span>
+    </div>
+
+    <div class="video">
+        <strong>Dimanche</strong>
+        <span>—</span>
+    </div>
+
+</section>
 
 
-                <a href="#shooting" class="card">
-                    <div class="icon">🎬</div>
-                    <h3>Tournages</h3>
-                    <p>
-                        Organisez les prochains tournages.
-                    </p>
-                </a>
+<!-- ================= TOURNAGES ================= -->
+
+<section id="shooting" class="page hidden">
+
+    <button class="back" onclick="goHome()">
+        ← Retour
+    </button>
+
+    <h2>🎬 Tournages</h2>
+
+    <div class="card">
+
+        <h3>Aucun tournage</h3>
+
+        <p>
+            Aucun tournage n'est programmé pour le moment.
+        </p>
+
+    </div>
+
+</section>
 
 
-                <a href="prive.html" class="card private-card">
-                    <div class="icon">🔒</div>
-                    <h3>Espace privé</h3>
-                    <p>
-                        Un espace réservé à toi et ton pote.
-                    </p>
-                </a>
+<!-- ================= CODE PRIVÉ ================= -->
 
-            </div>
+<section id="privateCode" class="page hidden">
 
-        </section>
+    <button class="back" onclick="goHome()">
+        ← Retour
+    </button>
 
+    <div id="codeBox">
 
-        <section id="planning" class="planning">
+        <h2>🔒 Espace privé</h2>
 
-            <h2>📅 Emploi du temps</h2>
+        <p>
+            Entre le code pour accéder au salon privé.
+        </p>
 
-            <div class="schedule">
+        <input
+            type="password"
+            id="password"
+            placeholder="Code d'accès"
+        >
 
-                <div>
-                    <strong>Lundi</strong>
-                    <span>🏋️ Entraînement</span>
-                </div>
+        <br>
 
-                <div>
-                    <strong>Mardi</strong>
-                    <span>🎉 Soirée entre nous</span>
-                </div>
+        <button class="enter" onclick="checkPassword()">
+            Entrer
+        </button>
 
-                <div>
-                    <strong>Mercredi</strong>
-                    <span>🏆 Tournoi</span>
-                </div>
+        <p id="error"></p>
 
-                <div>
-                    <strong>Jeudi</strong>
-                    <span>🏋️ Entraînement</span>
-                </div>
+    </div>
 
-                <div>
-                    <strong>Vendredi</strong>
-                    <span>😎 Chill</span>
-                </div>
-
-                <div>
-                    <strong>Samedi</strong>
-                    <span>🏆 Cup de la team</span>
-                </div>
-
-                <div>
-                    <strong>Dimanche</strong>
-                    <span>🌴 Repos</span>
-                </div>
-
-            </div>
-
-        </section>
+</section>
 
 
-        <section id="events" class="empty-section">
+<!-- ================= SALON PRIVÉ ================= -->
 
-            <h2>🎉 Événements</h2>
+<section id="private" class="page hidden">
 
-            <p>Aucun événement prévu pour le moment.</p>
+    <button class="back" onclick="goHome()">
+        ← Retour
+    </button>
 
-        </section>
+    <h2 class="private-title">
+        🔐 Salon privé
+    </h2>
+
+    <p style="color:#888;margin-bottom:30px;">
+        Espace réservé.
+    </p>
+
+    <div class="private-menu">
+
+        <button
+            class="main-button"
+            onclick="showPage('description')">
+            👤 Description joueur
+        </button>
+
+        <button
+            class="main-button"
+            onclick="showPage('players')">
+            👥 Joueurs
+        </button>
+
+        <button
+            class="main-button"
+            onclick="showPage('ranking')">
+            🏆 Classement
+        </button>
+
+    </div>
+
+</section>
 
 
-        <section id="videos" class="videos">
+<!-- ================= DESCRIPTION ================= -->
 
-            <h2>🎥 Vidéos</h2>
+<section id="description" class="page hidden">
 
-            <div class="video-table">
+    <button class="back" onclick="showPage('private')">
+        ← Retour au salon privé
+    </button>
 
-                <div><strong>Lundi</strong><span>👥 Présentation de la team</span></div>
-                <div><strong>Mardi</strong><span>🎤 Interview</span></div>
-                <div><strong>Mercredi</strong><span>🎤 Interview</span></div>
-                <div><strong>Jeudi</strong><span>🎮 Solo Build</span></div>
-                <div><strong>Vendredi</strong><span>🎤 Interview</span></div>
-                <div><strong>Samedi</strong><span>🎤 Interview</span></div>
-                <div><strong>Dimanche</strong><span>—</span></div>
+    <h2>👤 Description joueur</h2>
 
-            </div>
+    <div class="cards">
 
-        </section>
-
-
-        <section id="shooting" class="empty-section">
-
-            <h2>🎬 Tournages</h2>
-
+        <div class="card">
+            <h3>Joueur 1</h3>
             <p>
-                Aucun tournage programmé pour le moment.
+                Description du joueur à ajouter.
             </p>
+        </div>
 
-        </section>
+        <div class="card">
+            <h3>Joueur 2</h3>
+            <p>
+                Description du joueur à ajouter.
+            </p>
+        </div>
 
-    </main>
+    </div>
+
+</section>
 
 
-    <footer>
-        <p>TEAMHUB • Espace de la team</p>
-    </footer>
+<!-- ================= JOUEURS ================= -->
+
+<section id="players" class="page hidden">
+
+    <button class="back" onclick="showPage('private')">
+        ← Retour au salon privé
+    </button>
+
+    <h2>👥 Joueurs</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Joueur 1</h3>
+            <p>À compléter.</p>
+        </div>
+
+        <div class="card">
+            <h3>Joueur 2</h3>
+            <p>À compléter.</p>
+        </div>
+
+        <div class="card">
+            <h3>Joueur 3</h3>
+            <p>À compléter.</p>
+        </div>
+
+    </div>
+
+</section>
 
 
-    <script src="script.js"></script>
+<!-- ================= CLASSEMENT ================= -->
+
+<section id="ranking" class="page hidden">
+
+    <button class="back" onclick="showPage('private')">
+        ← Retour au salon privé
+    </button>
+
+    <h2>🏆 Classement</h2>
+
+    <div class="schedule">
+
+        <div class="day">
+            <strong>🥇 1er</strong>
+            <span>À compléter</span>
+        </div>
+
+        <div class="day">
+            <strong>🥈 2e</strong>
+            <span>À compléter</span>
+        </div>
+
+        <div class="day">
+            <strong>🥉 3e</strong>
+            <span>À compléter</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* AFFICHER UNE PAGE */
+
+function showPage(page){
+
+    const pages = document.querySelectorAll(".page");
+
+    pages.forEach(function(element){
+        element.classList.add("hidden");
+    });
+
+    document.getElementById(page).classList.remove("hidden");
+
+    window.scrollTo(0,0);
+}
+
+
+/* RETOUR ACCUEIL */
+
+function goHome(){
+
+    showPage("home");
+
+}
+
+
+/* CODE PRIVÉ */
+
+function checkPassword(){
+
+    const password =
+        document.getElementById("password").value;
+
+    const error =
+        document.getElementById("error");
+
+
+    if(password === "1122"){
+
+        error.textContent = "";
+
+        document.getElementById("password").value = "";
+
+        showPage("private");
+
+    }else{
+
+        error.textContent =
+            "❌ Code incorrect.";
+
+    }
+
+}
+
+</script>
 
 </body>
 </html>
