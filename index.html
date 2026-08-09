@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,311 +9,671 @@
 
 <style>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+/* =========================
+   BASE
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    font-family:Arial, Helvetica, sans-serif;
-    background:#05070d;
-    color:white;
-    min-height:100vh;
+html {
+    scroll-behavior: smooth;
 }
 
-/* NAVIGATION */
-
-header{
-    width:100%;
-    padding:20px;
-    text-align:center;
-    border-bottom:1px solid #202532;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #03050b;
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
-.logo{
-    font-size:30px;
-    font-weight:900;
-    letter-spacing:3px;
-}
-
-.logo span{
-    color:#00aaff;
+.hidden {
+    display: none !important;
 }
 
 
-/* CONTENU */
+/* =========================
+   FOND
+========================= */
 
-.page{
-    min-height:calc(100vh - 80px);
-    padding:40px 20px;
-    max-width:1100px;
-    margin:auto;
-}
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
 
-.hidden{
-    display:none;
-}
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(0, 100, 255, 0.15),
+            transparent 45%
+        );
 
-
-/* ACCUEIL */
-
-.home{
-    text-align:center;
-    padding-top:60px;
-}
-
-.home h1{
-    font-size:70px;
-    margin-bottom:15px;
-}
-
-.home h1 span{
-    color:#00aaff;
-}
-
-.home p{
-    color:#888;
-    font-size:18px;
-    margin-bottom:40px;
+    pointer-events: none;
+    z-index: -1;
 }
 
 
-/* BOUTONS */
+/* =========================
+   HEADER
+========================= */
 
-.buttons{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:18px;
-    max-width:800px;
-    margin:auto;
+header {
+    height: 75px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    background: rgba(3,5,11,0.88);
+
+    backdrop-filter: blur(15px);
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
 }
 
-button{
-    border:none;
-    cursor:pointer;
-    font-size:17px;
-    font-weight:bold;
-}
+.header-logo {
+    height: 55px;
+    width: auto;
 
-.main-button{
-    padding:25px;
-    border-radius:15px;
-    background:#0d111a;
-    color:white;
-    border:1px solid #252c39;
-    transition:0.3s;
-}
+    object-fit: contain;
 
-.main-button:hover{
-    transform:translateY(-5px);
-    border-color:#00aaff;
-    box-shadow:0 0 25px rgba(0,170,255,.2);
-}
-
-
-/* PAGES */
-
-.page h2{
-    font-size:38px;
-    margin-bottom:30px;
-}
-
-.back{
-    background:#151a24;
-    color:white;
-    padding:12px 20px;
-    border-radius:10px;
-    margin-bottom:30px;
-}
-
-.back:hover{
-    background:#00aaff;
-    color:#05070d;
+    filter:
+        drop-shadow(0 0 12px rgba(0,110,255,0.5));
 }
 
 
-/* CARTES */
+/* =========================
+   PAGES
+========================= */
 
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-}
+.page {
+    min-height: calc(100vh - 75px);
 
-.card{
-    background:#0d111a;
-    border:1px solid #202735;
-    border-radius:16px;
-    padding:25px;
-}
+    width: 100%;
+    max-width: 1100px;
 
-.card h3{
-    margin-bottom:12px;
-    color:#00aaff;
-}
+    margin: auto;
 
-.card p{
-    color:#999;
-    line-height:1.5;
+    padding: 45px 20px;
 }
 
 
-/* EMPLOI DU TEMPS */
+/* =========================
+   ACCUEIL
+========================= */
 
-.schedule{
-    display:grid;
-    gap:12px;
+.home {
+    min-height: calc(100vh - 75px);
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
 }
 
-.day{
-    background:#0d111a;
-    border:1px solid #202735;
-    border-radius:12px;
-    padding:20px;
+.home-logo {
+    width: min(650px, 90vw);
+    max-height: 480px;
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+    object-fit: contain;
+
+    filter:
+        drop-shadow(0 0 25px rgba(0,100,255,0.45));
+
+    animation: logoAppear 1.2s ease;
 }
 
-.day span{
-    color:#aaa;
+@keyframes logoAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
 }
 
+.home-text {
+    color: #9299a8;
 
-/* VIDEOS */
+    max-width: 600px;
 
-.video{
-    background:#0d111a;
-    border:1px solid #202735;
-    padding:20px;
-    margin-bottom:10px;
-    border-radius:12px;
+    line-height: 1.6;
 
-    display:flex;
-    justify-content:space-between;
-}
-
-.video span{
-    color:#aaa;
-}
-
-
-/* PRIVÉ */
-
-.private-title{
-    color:#00aaff;
-}
-
-.private-menu{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-}
-
-
-/* CODE */
-
-#codeBox{
-    max-width:400px;
-    margin:60px auto;
-    text-align:center;
-}
-
-#codeBox input{
-    width:100%;
-    padding:15px;
-    margin:20px 0;
-
-    border-radius:10px;
-    border:1px solid #303847;
-
-    background:#0d111a;
-    color:white;
-
-    text-align:center;
-    font-size:20px;
-}
-
-.enter{
-    background:#00aaff;
-    color:#05070d;
-
-    padding:14px 30px;
-    border-radius:10px;
-}
-
-#error{
-    color:#ff4d4d;
-    margin-top:15px;
+    margin: 10px 0 35px;
 }
 
 
-/* MOBILE */
+/* =========================
+   BOUTONS
+========================= */
 
-@media(max-width:600px){
+.buttons {
+    width: 100%;
+    max-width: 850px;
 
-    .home h1{
-        font-size:50px;
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 16px;
+}
+
+.main-button {
+    padding: 22px 15px;
+
+    border-radius: 15px;
+
+    border: 1px solid #202a3a;
+
+    background:
+        linear-gradient(
+            145deg,
+            #101622,
+            #080c14
+        );
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,0.25);
+}
+
+.main-button:hover {
+    transform: translateY(-5px);
+
+    border-color: #087cff;
+
+    box-shadow:
+        0 10px 30px rgba(0,110,255,0.18);
+}
+
+
+/* =========================
+   TITRES
+========================= */
+
+.page h2 {
+    font-size: 38px;
+    margin-bottom: 30px;
+}
+
+.blue {
+    color: #008cff;
+}
+
+
+/* =========================
+   RETOUR
+========================= */
+
+.back {
+    background: #111722;
+
+    border: 1px solid #283142;
+
+    color: white;
+
+    padding: 12px 20px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    margin-bottom: 30px;
+
+    transition: 0.2s;
+}
+
+.back:hover {
+    background: #008cff;
+
+    color: #02050b;
+
+    border-color: #008cff;
+}
+
+
+/* =========================
+   EMPLOI DU TEMPS
+========================= */
+
+.schedule {
+    display: grid;
+    gap: 12px;
+}
+
+.day {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px;
+
+    border-radius: 13px;
+
+    background: #0b1019;
+
+    border: 1px solid #202938;
+
+    transition: 0.2s;
+}
+
+.day:hover {
+    border-color: #087cff;
+
+    transform: translateX(4px);
+}
+
+.day span {
+    color: #9da5b4;
+}
+
+
+/* =========================
+   VIDEOS
+========================= */
+
+.video-list {
+    display: grid;
+    gap: 12px;
+}
+
+.video {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px;
+
+    border-radius: 13px;
+
+    background: #0b1019;
+
+    border: 1px solid #202938;
+}
+
+.video span {
+    color: #9da5b4;
+}
+
+
+/* =========================
+   CARTES
+========================= */
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(230px, 1fr));
+
+    gap: 18px;
+}
+
+.card {
+    padding: 25px;
+
+    background: #0b1019;
+
+    border: 1px solid #202938;
+
+    border-radius: 16px;
+
+    transition: 0.2s;
+}
+
+.card:hover {
+    border-color: #087cff;
+
+    transform: translateY(-4px);
+}
+
+.card h3 {
+    color: #008cff;
+
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #9098a7;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   CODE PRIVE
+========================= */
+
+.code-container {
+    max-width: 420px;
+
+    margin: 60px auto;
+
+    text-align: center;
+}
+
+.code-container h2 {
+    margin-bottom: 15px;
+}
+
+.code-container p {
+    color: #8f97a6;
+
+    line-height: 1.5;
+}
+
+#password {
+    width: 100%;
+
+    margin: 25px 0 15px;
+
+    padding: 16px;
+
+    border-radius: 11px;
+
+    border: 1px solid #293445;
+
+    outline: none;
+
+    background: #0b1019;
+
+    color: white;
+
+    text-align: center;
+
+    font-size: 20px;
+
+    letter-spacing: 5px;
+}
+
+#password:focus {
+    border-color: #008cff;
+
+    box-shadow:
+        0 0 15px rgba(0,140,255,0.15);
+}
+
+.enter-button {
+    width: 100%;
+
+    padding: 15px;
+
+    border: 0;
+
+    border-radius: 11px;
+
+    background: #008cff;
+
+    color: #02050b;
+
+    font-weight: bold;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.enter-button:hover {
+    background: #35a8ff;
+}
+
+#error {
+    color: #ff4d5c;
+
+    margin-top: 15px;
+
+    min-height: 20px;
+}
+
+
+/* =========================
+   SALON PRIVE
+========================= */
+
+.private-title {
+    color: #008cff;
+}
+
+.private-subtitle {
+    color: #8f97a6;
+
+    margin-top: -20px;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   CLASSEMENT
+========================= */
+
+.rank {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 22px;
+
+    margin-bottom: 12px;
+
+    background: #0b1019;
+
+    border: 1px solid #202938;
+
+    border-radius: 13px;
+}
+
+.rank-name {
+    font-weight: bold;
+}
+
+.rank-number {
+    font-size: 24px;
+
+    font-weight: 900;
+}
+
+
+/* =========================
+   MUSIQUE
+========================= */
+
+.music-button {
+    position: fixed;
+
+    right: 18px;
+    bottom: 18px;
+
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+
+    border: 1px solid #087cff;
+
+    background: #0b1019;
+
+    color: white;
+
+    cursor: pointer;
+
+    z-index: 200;
+
+    box-shadow:
+        0 0 20px rgba(0,100,255,0.25);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .header-logo {
+        height: 48px;
+    }
+
+    .home-logo {
+        width: 95vw;
+    }
+
+    .page {
+        padding: 30px 15px;
+    }
+
+    .page h2 {
+        font-size: 30px;
     }
 
     .day,
-    .video{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:8px;
+    .video {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 8px;
+    }
+
+    .main-button {
+        padding: 20px 12px;
     }
 
 }
 
 </style>
+
 </head>
 
 
 <body>
 
+
+<!-- =========================
+     MUSIQUE
+========================= -->
+
+<audio id="music" loop>
+
+    <source
+        src="musique.mp3"
+        type="audio/mpeg">
+
+</audio>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
 
-    <div class="logo">
-        EU<span>ROPA</span>
-    </div>
+    <img
+        src="logo.png"
+        class="header-logo"
+        alt="EUROPA">
 
 </header>
 
 
-<!-- ================= ACCUEIL ================= -->
+<!-- =========================
+     ACCUEIL
+========================= -->
 
 <section id="home" class="page home">
 
-    <h1>
-        EU<span>ROPA</span>
-    </h1>
+    <img
+        src="logo.png"
+        class="home-logo"
+        alt="EUROPA">
 
-    <p>
-        Bienvenue dans l'espace de la team.
+    <p class="home-text">
+
+        Bienvenue dans l'espace officiel
+        de la team EUROPA.
+
     </p>
+
 
     <div class="buttons">
 
-        <button class="main-button" onclick="showPage('planning')">
-            📅 Emploi du temps
+        <button
+            class="main-button"
+            onclick="showPage('planning')">
+
+            📅<br>
+            Emploi du temps
+
         </button>
 
-        <button class="main-button" onclick="showPage('events')">
-            🎉 Événements
+
+        <button
+            class="main-button"
+            onclick="showPage('events')">
+
+            🎉<br>
+            Événements
+
         </button>
 
-        <button class="main-button" onclick="showPage('videos')">
-            🎥 Vidéos
+
+        <button
+            class="main-button"
+            onclick="showPage('videos')">
+
+            🎥<br>
+            Vidéos
+
         </button>
 
-        <button class="main-button" onclick="showPage('shooting')">
-            🎬 Tournages
+
+        <button
+            class="main-button"
+            onclick="showPage('shooting')">
+
+            🎬<br>
+            Tournages
+
         </button>
 
-        <button class="main-button" onclick="showPage('privateCode')">
-            🔒 Privé
+
+        <button
+            class="main-button"
+            onclick="showPage('privateCode')">
+
+            🔒<br>
+            Privé
+
         </button>
 
     </div>
@@ -320,142 +681,206 @@ button{
 </section>
 
 
-<!-- ================= EMPLOI DU TEMPS ================= -->
+<!-- =========================
+     EMPLOI DU TEMPS
+========================= -->
 
-<section id="planning" class="page hidden">
+<section
+    id="planning"
+    class="page hidden">
 
-    <button class="back" onclick="goHome()">
+    <button
+        class="back"
+        onclick="goHome()">
+
         ← Retour
+
     </button>
+
 
     <h2>📅 Emploi du temps</h2>
 
+
     <div class="schedule">
+
 
         <div class="day">
             <strong>Lundi</strong>
             <span>🏋️ Entraînement</span>
         </div>
 
+
         <div class="day">
             <strong>Mardi</strong>
             <span>🎉 Soirée entre nous</span>
         </div>
+
 
         <div class="day">
             <strong>Mercredi</strong>
             <span>🏆 Tournoi</span>
         </div>
 
+
         <div class="day">
             <strong>Jeudi</strong>
             <span>🏋️ Entraînement</span>
         </div>
+
 
         <div class="day">
             <strong>Vendredi</strong>
             <span>😎 Chill</span>
         </div>
 
+
         <div class="day">
             <strong>Samedi</strong>
             <span>🏆 Cup de la team</span>
         </div>
+
 
         <div class="day">
             <strong>Dimanche</strong>
             <span>🌴 Repos</span>
         </div>
 
+
     </div>
 
 </section>
 
 
-<!-- ================= EVENEMENTS ================= -->
+<!-- =========================
+     EVENEMENTS
+========================= -->
 
-<section id="events" class="page hidden">
+<section
+    id="events"
+    class="page hidden">
 
-    <button class="back" onclick="goHome()">
+    <button
+        class="back"
+        onclick="goHome()">
+
         ← Retour
+
     </button>
+
 
     <h2>🎉 Événements</h2>
 
+
     <div class="card">
+
         <h3>Aucun événement</h3>
+
         <p>
-            Aucun événement n'est prévu pour le moment.
+            Aucun événement prévu pour le moment.
         </p>
+
     </div>
 
 </section>
 
 
-<!-- ================= VIDEOS ================= -->
+<!-- =========================
+     VIDEOS
+========================= -->
 
-<section id="videos" class="page hidden">
+<section
+    id="videos"
+    class="page hidden">
 
-    <button class="back" onclick="goHome()">
+    <button
+        class="back"
+        onclick="goHome()">
+
         ← Retour
+
     </button>
+
 
     <h2>🎥 Vidéos</h2>
 
-    <div class="video">
-        <strong>Lundi</strong>
-        <span>👥 Présentation de la team</span>
-    </div>
 
-    <div class="video">
-        <strong>Mardi</strong>
-        <span>🎤 Interview</span>
-    </div>
+    <div class="video-list">
 
-    <div class="video">
-        <strong>Mercredi</strong>
-        <span>🎤 Interview</span>
-    </div>
 
-    <div class="video">
-        <strong>Jeudi</strong>
-        <span>🎮 Solo Build</span>
-    </div>
+        <div class="video">
+            <strong>Lundi</strong>
+            <span>👥 Présentation de la team</span>
+        </div>
 
-    <div class="video">
-        <strong>Vendredi</strong>
-        <span>🎤 Interview</span>
-    </div>
 
-    <div class="video">
-        <strong>Samedi</strong>
-        <span>🎤 Interview</span>
-    </div>
+        <div class="video">
+            <strong>Mardi</strong>
+            <span>🎤 Interview</span>
+        </div>
 
-    <div class="video">
-        <strong>Dimanche</strong>
-        <span>—</span>
+
+        <div class="video">
+            <strong>Mercredi</strong>
+            <span>🎤 Interview</span>
+        </div>
+
+
+        <div class="video">
+            <strong>Jeudi</strong>
+            <span>🎮 Solo Build</span>
+        </div>
+
+
+        <div class="video">
+            <strong>Vendredi</strong>
+            <span>🎤 Interview</span>
+        </div>
+
+
+        <div class="video">
+            <strong>Samedi</strong>
+            <span>🎤 Interview</span>
+        </div>
+
+
+        <div class="video">
+            <strong>Dimanche</strong>
+            <span>—</span>
+        </div>
+
+
     </div>
 
 </section>
 
 
-<!-- ================= TOURNAGES ================= -->
+<!-- =========================
+     TOURNAGES
+========================= -->
 
-<section id="shooting" class="page hidden">
+<section
+    id="shooting"
+    class="page hidden">
 
-    <button class="back" onclick="goHome()">
+    <button
+        class="back"
+        onclick="goHome()">
+
         ← Retour
+
     </button>
 
+
     <h2>🎬 Tournages</h2>
+
 
     <div class="card">
 
         <h3>Aucun tournage</h3>
 
         <p>
-            Aucun tournage n'est programmé pour le moment.
+            Aucun tournage n'est programmé
+            pour le moment.
         </p>
 
     </div>
@@ -463,33 +888,51 @@ button{
 </section>
 
 
-<!-- ================= CODE PRIVÉ ================= -->
+<!-- =========================
+     CODE PRIVE
+========================= -->
 
-<section id="privateCode" class="page hidden">
+<section
+    id="privateCode"
+    class="page hidden">
 
-    <button class="back" onclick="goHome()">
+
+    <button
+        class="back"
+        onclick="goHome()">
+
         ← Retour
+
     </button>
 
-    <div id="codeBox">
+
+    <div class="code-container">
 
         <h2>🔒 Espace privé</h2>
 
         <p>
-            Entre le code pour accéder au salon privé.
+            Entre le code pour accéder
+            au salon privé.
         </p>
+
 
         <input
             type="password"
             id="password"
-            placeholder="Code d'accès"
-        >
+            inputmode="numeric"
+            maxlength="4"
+            placeholder="••••"
+            onkeydown="if(event.key==='Enter') checkPassword()">
 
-        <br>
 
-        <button class="enter" onclick="checkPassword()">
+        <button
+            class="enter-button"
+            onclick="checkPassword()">
+
             Entrer
+
         </button>
+
 
         <p id="error"></p>
 
@@ -498,172 +941,335 @@ button{
 </section>
 
 
-<!-- ================= SALON PRIVÉ ================= -->
+<!-- =========================
+     SALON PRIVE
+========================= -->
 
-<section id="private" class="page hidden">
+<section
+    id="private"
+    class="page hidden">
 
-    <button class="back" onclick="goHome()">
+
+    <button
+        class="back"
+        onclick="goHome()">
+
         ← Retour
+
     </button>
+
 
     <h2 class="private-title">
         🔐 Salon privé
     </h2>
 
-    <p style="color:#888;margin-bottom:30px;">
-        Espace réservé.
+
+    <p class="private-subtitle">
+        Espace réservé à toi et ton pote.
     </p>
 
-    <div class="private-menu">
+
+    <div class="buttons">
+
 
         <button
             class="main-button"
             onclick="showPage('description')">
-            👤 Description joueur
+
+            👤<br>
+            Description joueur
+
         </button>
+
 
         <button
             class="main-button"
             onclick="showPage('players')">
-            👥 Joueurs
+
+            👥<br>
+            Joueurs
+
         </button>
+
 
         <button
             class="main-button"
             onclick="showPage('ranking')">
-            🏆 Classement
+
+            🏆<br>
+            Classement
+
         </button>
+
 
     </div>
 
 </section>
 
 
-<!-- ================= DESCRIPTION ================= -->
+<!-- =========================
+     DESCRIPTION JOUEUR
+========================= -->
 
-<section id="description" class="page hidden">
+<section
+    id="description"
+    class="page hidden">
 
-    <button class="back" onclick="showPage('private')">
+
+    <button
+        class="back"
+        onclick="showPage('private')">
+
         ← Retour au salon privé
+
     </button>
+
 
     <h2>👤 Description joueur</h2>
 
+
     <div class="cards">
 
-        <div class="card">
-            <h3>Joueur 1</h3>
-            <p>
-                Description du joueur à ajouter.
-            </p>
-        </div>
 
         <div class="card">
-            <h3>Joueur 2</h3>
+
+            <h3>Joueur 1</h3>
+
             <p>
-                Description du joueur à ajouter.
+                Nom : À compléter
+                <br><br>
+
+                Rôle : À compléter
+                <br>
+
+                Niveau : À compléter
             </p>
+
         </div>
+
+
+        <div class="card">
+
+            <h3>Joueur 2</h3>
+
+            <p>
+                Nom : À compléter
+                <br><br>
+
+                Rôle : À compléter
+                <br>
+
+                Niveau : À compléter
+            </p>
+
+        </div>
+
 
     </div>
 
 </section>
 
 
-<!-- ================= JOUEURS ================= -->
+<!-- =========================
+     JOUEURS
+========================= -->
 
-<section id="players" class="page hidden">
+<section
+    id="players"
+    class="page hidden">
 
-    <button class="back" onclick="showPage('private')">
+
+    <button
+        class="back"
+        onclick="showPage('private')">
+
         ← Retour au salon privé
+
     </button>
+
 
     <h2>👥 Joueurs</h2>
 
+
     <div class="cards">
 
+
         <div class="card">
+
             <h3>Joueur 1</h3>
-            <p>À compléter.</p>
+
+            <p>
+                À compléter.
+            </p>
+
         </div>
 
+
         <div class="card">
+
             <h3>Joueur 2</h3>
-            <p>À compléter.</p>
+
+            <p>
+                À compléter.
+            </p>
+
         </div>
 
+
         <div class="card">
+
             <h3>Joueur 3</h3>
-            <p>À compléter.</p>
+
+            <p>
+                À compléter.
+            </p>
+
         </div>
+
 
     </div>
 
 </section>
 
 
-<!-- ================= CLASSEMENT ================= -->
+<!-- =========================
+     CLASSEMENT
+========================= -->
 
-<section id="ranking" class="page hidden">
+<section
+    id="ranking"
+    class="page hidden">
 
-    <button class="back" onclick="showPage('private')">
+
+    <button
+        class="back"
+        onclick="showPage('private')">
+
         ← Retour au salon privé
+
     </button>
+
 
     <h2>🏆 Classement</h2>
 
-    <div class="schedule">
 
-        <div class="day">
-            <strong>🥇 1er</strong>
-            <span>À compléter</span>
+    <div>
+
+
+        <div class="rank">
+
+            <span class="rank-number">
+                🥇
+            </span>
+
+            <span class="rank-name">
+                Joueur 1
+            </span>
+
+            <span>
+                À compléter
+            </span>
+
         </div>
 
-        <div class="day">
-            <strong>🥈 2e</strong>
-            <span>À compléter</span>
+
+        <div class="rank">
+
+            <span class="rank-number">
+                🥈
+            </span>
+
+            <span class="rank-name">
+                Joueur 2
+            </span>
+
+            <span>
+                À compléter
+            </span>
+
         </div>
 
-        <div class="day">
-            <strong>🥉 3e</strong>
-            <span>À compléter</span>
+
+        <div class="rank">
+
+            <span class="rank-number">
+                🥉
+            </span>
+
+            <span class="rank-name">
+                Joueur 3
+            </span>
+
+            <span>
+                À compléter
+            </span>
+
         </div>
+
 
     </div>
 
 </section>
+
+
+<!-- =========================
+     BOUTON MUSIQUE
+========================= -->
+
+<button
+    class="music-button"
+    onclick="toggleMusic()"
+    id="musicButton">
+
+    🎵
+
+</button>
 
 
 <script>
 
-/* AFFICHER UNE PAGE */
+/* =========================
+   NAVIGATION
+========================= */
 
-function showPage(page){
+function showPage(page) {
 
-    const pages = document.querySelectorAll(".page");
+    const pages =
+        document.querySelectorAll(".page");
 
-    pages.forEach(function(element){
+    pages.forEach(function(element) {
+
         element.classList.add("hidden");
+
     });
 
-    document.getElementById(page).classList.remove("hidden");
 
-    window.scrollTo(0,0);
+    document
+        .getElementById(page)
+        .classList.remove("hidden");
+
+
+    window.scrollTo(0, 0);
+
 }
 
 
-/* RETOUR ACCUEIL */
+/* =========================
+   RETOUR ACCUEIL
+========================= */
 
-function goHome(){
+function goHome() {
 
     showPage("home");
 
 }
 
 
-/* CODE PRIVÉ */
+/* =========================
+   CODE PRIVE
+========================= */
 
-function checkPassword(){
+function checkPassword() {
 
     const password =
         document.getElementById("password").value;
@@ -672,15 +1278,19 @@ function checkPassword(){
         document.getElementById("error");
 
 
-    if(password === "1122"){
+    if (password === "1122") {
 
         error.textContent = "";
 
         document.getElementById("password").value = "";
 
+        startMusic();
+
         showPage("private");
 
-    }else{
+    }
+
+    else {
 
         error.textContent =
             "❌ Code incorrect.";
@@ -689,7 +1299,57 @@ function checkPassword(){
 
 }
 
+
+/* =========================
+   MUSIQUE
+========================= */
+
+const music =
+    document.getElementById("music");
+
+
+function startMusic() {
+
+    music.volume = 0.25;
+
+    music.play().catch(function() {
+
+        console.log(
+            "La musique attend une interaction."
+        );
+
+    });
+
+}
+
+
+function toggleMusic() {
+
+    if (music.paused) {
+
+        startMusic();
+
+        document
+            .getElementById("musicButton")
+            .textContent = "🔊";
+
+    }
+
+    else {
+
+        music.pause();
+
+        document
+            .getElementById("musicButton")
+            .textContent = "🔇";
+
+    }
+
+}
+
 </script>
 
+
 </body>
-</html>
+
+        </html>
