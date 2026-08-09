@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EUROPA</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #03060d;
+    color: white;
+    min-height: 100vh;
+}
+
+header {
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #050912;
+    border-bottom: 1px solid #182337;
+}
+
+header img {
+    height: 58px;
+    max-width: 180px;
+    object-fit: contain;
+}
+
+.page {
+    max-width: 1000px;
+    min-height: calc(100vh - 75px);
+    margin: auto;
+    padding: 35px 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ACCUEIL */
+
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.home-logo {
+    width: min(550px, 90vw);
+    max-height: 420px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.home p {
+    color: #8d98aa;
+    margin-bottom: 35px;
+}
+
+.buttons {
+    width: 100%;
+    max-width: 850px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.main-button {
+    padding: 22px 10px;
+    border-radius: 14px;
+    border: 1px solid #26344a;
+    background: #0b111c;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.main-button:hover {
+    transform: translateY(-4px);
+    border-color: #008cff;
+    background: #0e1725;
+}
+
+/* PAGES */
+
+h2 {
+    font-size: 35px;
+    margin-bottom: 25px;
+}
+
+.back {
+    padding: 12px 18px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    border: 1px solid #26344a;
+    background: #0b111c;
+    color: white;
+    cursor: pointer;
+}
+
+.back:hover {
+    background: #008cff;
+    color: black;
+}
+
+/* EMPLOI */
+
+.schedule {
+    display: grid;
+    gap: 12px;
+}
+
+.day {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: #0b111c;
+    border: 1px solid #1d2a3d;
+    border-radius: 12px;
+}
+
+.day span {
+    color: #8d98aa;
+}
+
+/* VIDEOS */
+
+.video-list {
+    display: grid;
+    gap: 12px;
+}
+
+.video {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: #0b111c;
+    border: 1px solid #1d2a3d;
+    border-radius: 12px;
+}
+
+.video span {
+    color: #8d98aa;
+}
+
+/* CARTES */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 15px;
+}
+
+.card {
+    background: #0b111c;
+    border: 1px solid #1d2a3d;
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.card h3 {
+    color: #008cff;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #8d98aa;
+    line-height: 1.6;
+}
+
+/* CODE */
+
+.code-box {
+    max-width: 400px;
+    margin: 60px auto;
+    text-align: center;
+}
+
+.code-box p {
+    color: #8d98aa;
+    margin-bottom: 20px;
+}
+
+#password {
+    width: 100%;
+    padding: 15px;
+    background: #0b111c;
+    border: 1px solid #26344a;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    letter-spacing: 5px;
+    margin-bottom: 12px;
+}
+
+.enter {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #008cff;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#error {
+    color: #ff4757;
+    margin-top: 12px;
+}
+
+/* DESCRIPTION */
+
+.description {
+    width: 100%;
+    min-height: 130px;
+    margin-top: 10px;
+    padding: 12px;
+    background: #050a12;
+    color: white;
+    border: 1px solid #26344a;
+    border-radius: 10px;
+    resize: vertical;
+    font-family: Arial;
+}
+
+.save {
+    margin-top: 20px;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #008cff;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* CLASSEMENT */
+
+.rank {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    margin-bottom: 12px;
+    background: #0b111c;
+    border: 1px solid #1d2a3d;
+    border-radius: 12px;
+}
+
+.rank-number {
+    font-size: 25px;
+    min-width: 40px;
+}
+
+.rank-name {
+    font-weight: bold;
+}
+
+/* CHAT */
+
+.chat {
+    background: #070c14;
+    border: 1px solid #1d2a3d;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.messages {
+    height: 400px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.message {
+    background: #101a29;
+    border: 1px solid #26344a;
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    word-break: break-word;
+}
+
+.message-time {
+    display: block;
+    color: #687589;
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.chat-input {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#chatInput {
+    flex: 1;
+    padding: 14px;
+    background: #0b111c;
+    color: white;
+    border: 1px solid #26344a;
+    border-radius: 10px;
+}
+
+.chat-send {
+    padding: 14px 20px;
+    background: #008cff;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    h2 {
+        font-size: 28px;
+    }
+
+    .day,
+    .video {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .home-logo {
+        width: 95vw;
+    }
+
+    .messages {
+        height: 350px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="logo.png" alt="EUROPA">
+</header>
+
+
+<!-- ================= ACCUEIL ================= -->
+
+<section id="home" class="page home">
+
+    <img src="logo.png" class="home-logo" alt="EUROPA">
+
+    <p>
+        Bienvenue dans l'espace officiel de la team EUROPA.
+    </p>
+
+    <div class="buttons">
+
+        <button class="main-button"
+        onclick="showPage('planning')">
+            📅<br>Emploi du temps
+        </button>
+
+        <button class="main-button"
+        onclick="showPage('events')">
+            🎉<br>Événements
+        </button>
+
+        <button class="main-button"
+        onclick="showPage('videos')">
+            🎥<br>Vidéos
+        </button>
+
+        <button class="main-button"
+        onclick="showPage('shooting')">
+            🎬<br>Tournages
+        </button>
+
+        <button class="main-button"
+        onclick="showPage('code')">
+            🔒<br>Privé
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= EMPLOI ================= -->
+
+<section id="planning" class="page hidden">
+
+<button class="back" onclick="goHome()">← Retour</button>
+
+<h2>📅 Emploi du temps</h2>
+
+<div class="schedule">
+
+<div class="day">
+<strong>Lundi</strong>
+<span>🏋️ Entraînement</span>
+</div>
+
+<div class="day">
+<strong>Mardi</strong>
+<span>🎉 Soirée entre nous</span>
+</div>
+
+<div class="day">
+<strong>Mercredi</strong>
+<span>🏆 Tournoi</span>
+</div>
+
+<div class="day">
+<strong>Jeudi</strong>
+<span>🏋️ Entraînement</span>
+</div>
+
+<div class="day">
+<strong>Vendredi</strong>
+<span>😎 Chill</span>
+</div>
+
+<div class="day">
+<strong>Samedi</strong>
+<span>🏆 Cup de la team</span>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= EVENTS ================= -->
+
+<section id="events" class="page hidden">
+
+<button class="back" onclick="goHome()">← Retour</button>
+
+<h2>🎉 Événements</h2>
+
+<div class="card">
+<h3>Aucun événement</h3>
+<p>Aucun événement prévu pour le moment.</p>
+</div>
+
+</section>
+
+
+<!-- ================= VIDEOS ================= -->
+
+<section id="videos" class="page hidden">
+
+<button class="back" onclick="goHome()">← Retour</button>
+
+<h2>🎥 Vidéos</h2>
+
+<div class="video-list">
+
+<div class="video">
+<strong>Lundi</strong>
+<span>👥 Présentation de la team</span>
+</div>
+
+<div class="video">
+<strong>Mardi</strong>
+<span>🎤 Interview</span>
+</div>
+
+<div class="video">
+<strong>Mercredi</strong>
+<span>🎤 Interview</span>
+</div>
+
+<div class="video">
+<strong>Jeudi</strong>
+<span>🎮 Solo Build</span>
+</div>
+
+<div class="video">
+<strong>Vendredi</strong>
+<span>🎤 Interview</span>
+</div>
+
+<div class="video">
+<strong>Samedi</strong>
+<span>🎤 Interview</span>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= TOURNAGES ================= -->
+
+<section id="shooting" class="page hidden">
+
+<button class="back" onclick="goHome()">← Retour</button>
+
+<h2>🎬 Tournages</h2>
+
+<div class="card">
+
+<h3>Aucun tournage</h3>
+
+<p>
+Aucun tournage n'est programmé pour le moment.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ================= CODE PRIVE ================= -->
+
+<section id="code" class="page hidden">
+
+<button class="back" onclick="goHome()">← Retour</button>
+
+<div class="code-box">
+
+<h2>🔒 Espace privé</h2>
+
+<p>
+Entre le code pour accéder au salon privé.
+</p>
+
+<input
+id="password"
+type="password"
+maxlength="4"
+inputmode="numeric"
+placeholder="••••"
+onkeydown="if(event.key==='Enter')checkPassword()"
+>
+
+<button class="enter" onclick="checkPassword()">
+Entrer
+</button>
+
+<p id="error"></p>
+
+</div>
+
+</section>
+
+
+<!-- ================= SALON PRIVE ================= -->
+
+<section id="private" class="page hidden">
+
+<button class="back" onclick="goHome()">← Retour</button>
+
+<h2>🔐 Salon privé</h2>
+
+<div class="buttons">
+
+<button class="main-button"
+onclick="showPage('description')">
+👤<br>Description joueur
+</button>
+
+<button class="main-button"
+onclick="showPage('chat')">
+💬<br>Chat privé
+</button>
+
+<button class="main-button"
+onclick="showPage('ranking')">
+🏆<br>Classement
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= DESCRIPTION ================= -->
+
+<section id="description" class="page hidden">
+
+<button class="back"
+onclick="showPage('private')">
+← Retour au salon privé
+</button>
+
+<h2>👤 Description joueur</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>MZO</h3>
+<textarea class="description"
+id="descMZO"
+placeholder="Description de MZO..."></textarea>
+</div>
+
+<div class="card">
+<h3>RAPH</h3>
+<textarea class="description"
+id="descRAPH"
+placeholder="Description de RAPH..."></textarea>
+</div>
+
+<div class="card">
+<h3>Z3RK</h3>
+<textarea class="description"
+id="descZ3RK"
+placeholder="Description de Z3RK..."></textarea>
+</div>
+
+<div class="card">
+<h3>BAPTISTOSS</h3>
+<textarea class="description"
+id="descBAPTISTOSS"
+placeholder="Description de BAPTISTOSS..."></textarea>
+</div>
+
+<div class="card">
+<h3>GABI</h3>
+<textarea class="description"
+id="descGABI"
+placeholder="Description de GABI..."></textarea>
+</div>
+
+</div>
+
+<button class="save" onclick="saveDescriptions()">
+💾 Sauvegarder
+</button>
+
+</section>
+
+
+<!-- ================= CHAT ================= -->
+
+<section id="chat" class="page hidden">
+
+<button class="back"
+onclick="showPage('private')">
+← Retour au salon privé
+</button>
+
+<h2>💬 Chat privé</h2>
+
+<div class="chat">
+
+<div id="messages" class="messages">
+</div>
+
+<div class="chat-input">
+
+<input
+id="chatInput"
+placeholder="Écris ton message..."
+maxlength="300"
+onkeydown="if(event.key==='Enter')sendMessage()"
+>
+
+<button class="chat-send"
+onclick="sendMessage()">
+Envoyer
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= CLASSEMENT ================= -->
+
+<section id="ranking" class="page hidden">
+
+<button class="back"
+onclick="showPage('private')">
+← Retour au salon privé
+</button>
+
+<h2>🏆 Classement</h2>
+
+<div class="rank">
+<span class="rank-number">🥇</span>
+<span class="rank-name">MZO</span>
+</div>
+
+<div class="rank">
+<span class="rank-number">🥈</span>
+<span class="rank-name">RAPH</span>
+</div>
+
+<div class="rank">
+<span class="rank-number">🥉</span>
+<span class="rank-name">Z3RK</span>
+</div>
+
+<div class="rank">
+<span class="rank-number">4</span>
+<span class="rank-name">BAPTISTOSS</span>
+</div>
+
+<div class="rank">
+<span class="rank-number">5</span>
+<span class="rank-name">GABI</span>
+</div>
+
+</section>
+
+
+<script>
+
+/* NAVIGATION */
+
+function showPage(page) {
+
+    document
+    .querySelectorAll(".page")
+    .forEach(function(p) {
+        p.classList.add("hidden");
+    });
+
+    document
+    .getElementById(page)
+    .classList.remove("hidden");
+
+    window.scrollTo(0, 0);
+}
+
+
+function goHome() {
+    showPage("home");
+}
+
+
+/* CODE PRIVE */
+
+function checkPassword() {
+
+    const password =
+    document.getElementById("password").value;
+
+    const error =
+    document.getElementById("error");
+
+    if(password === "1122") {
+
+        error.textContent = "";
+
+        document.getElementById("password").value = "";
+
+        showPage("private");
+
+    } else {
+
+        error.textContent =
+        "❌ Code incorrect.";
+
+    }
+}
+
+
+/* DESCRIPTIONS */
+
+function saveDescriptions() {
+
+    const ids = [
+        "descMZO",
+        "descRAPH",
+        "descZ3RK",
+        "descBAPTISTOSS",
+        "descGABI"
+    ];
+
+    ids.forEach(function(id) {
+
+        localStorage.setItem(
+            id,
+            document.getElementById(id).value
+        );
+
+    });
+
+    alert("✅ Descriptions sauvegardées !");
+}
+
+
+function loadDescriptions() {
+
+    const ids = [
+        "descMZO",
+        "descRAPH",
+        "descZ3RK",
+        "descBAPTISTOSS",
+        "descGABI"
+    ];
+
+    ids.forEach(function(id) {
+
+        const saved =
+        localStorage.getItem(id);
+
+        if(saved !== null) {
+            document.getElementById(id).value = saved;
+        }
+
+    });
+}
+
+
+/* CHAT */
+
+function sendMessage() {
+
+    const input =
+    document.getElementById("chatInput");
+
+    const message =
+    input.value.trim();
+
+    if(message === "") return;
+
+    const messages =
+    JSON.parse(
+        localStorage.getItem("europaChat") || "[]"
+    );
+
+    messages.push({
+        text: message,
+        time: new Date().toLocaleTimeString(
+            "fr-FR",
+            {
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        )
+    });
+
+    localStorage.setItem(
+        "europaChat",
+        JSON.stringify(messages)
+    );
+
+    input.value = "";
+
+    loadChat();
+}
+
+
+function loadChat() {
+
+    const container =
+    document.getElementById("messages");
+
+    const messages =
+    JSON.parse(
+        localStorage.getItem("europaChat") || "[]"
+    );
+
+    container.innerHTML = "";
+
+    messages.forEach(function(message) {
+
+        const div =
+        document.createElement("div");
+
+        div.className = "message";
+
+        div.textContent =
+        message.text;
+
+        const time =
+        document.createElement("span");
+
+        time.className = "message-time";
+
+        time.textContent =
+        message.time;
+
+        div.appendChild(time);
+
+        container.appendChild(div);
+
+    });
+
+    container.scrollTop =
+    container.scrollHeight;
+}
+
+
+/* LANCEMENT */
+
+loadDescriptions();
+loadChat();
+
+</script>
+
+</body>
+  </html>
